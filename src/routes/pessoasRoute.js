@@ -3,6 +3,8 @@ const PessoaController = require("../controllers/PessoaController.js");
 
 const router = Router();
 
-router.get("/pessoas", PessoaController.getAll);
+const pessoaController = new PessoaController();
+
+router.get("/pessoas", (req, res) => pessoaController.getAll(req, res));
 
 module.exports = router;
