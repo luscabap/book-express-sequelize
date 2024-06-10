@@ -12,6 +12,26 @@ class Controller {
     }
   }
 
+  async getById(req, res){
+    const { id } = req.params;
+    try {
+      const responseRegister = await this.serviceEntity.getRegisterById(Number(id));
+      return res.status(200).json(responseRegister);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async create(req, res){
+    const dataToCreate = req.body;
+    try {
+      const newRegisterCreated = await this.serviceEntity.createNewRegister(dataToCreate);
+      return res.status(200).json(newRegisterCreated);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async update(req, res) {
     const { id } = req.params;
     const dataToUpdate = req.body;
@@ -27,6 +47,16 @@ class Controller {
       }
 
       return res.status(200).json({ message: "Success to update the register" });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async delete(req, res){
+    const { id } = req.params;
+    try {
+      const registerDeleted = await this.serviceEntity.deleteRegister(id);
+      return res.status(200).json(registerDeleted);
     } catch (error) {
       console.log(error);
     }

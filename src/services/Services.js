@@ -10,6 +10,14 @@ class Services {
     return responseDB;
   }
 
+  async getRegisterById(id){
+    return dataSource[this.model].findByPk(id);
+  }
+
+  async createNewRegister(data){
+    return dataSource[this.model].create(data);
+  }
+
   async updateRegister(dataToUpdate, id) {
     const listUpdatedRegisters = dataSource[this.model].update(dataToUpdate, {
       where: {
@@ -21,6 +29,10 @@ class Services {
       return false;
     }
     return true;
+  }
+
+  async deleteRegister(id){
+    return dataSource[this.model].destroy({ where: { id: id } });
   }
 }
 
