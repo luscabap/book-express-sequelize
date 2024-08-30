@@ -14,7 +14,9 @@ class PessoaController extends Controller {
       const registrationList = await pessoaServices.getRegistrationByStudent(Number(idStudent));
       return res.status(200).json(registrationList);
     } catch (error) {
-      console.log(error);
+      return res.status(500).json({
+        erro: error.message,
+      });
     }
   }
 }
